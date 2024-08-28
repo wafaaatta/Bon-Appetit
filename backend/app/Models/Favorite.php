@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
     public $fillable = [
-        'name',
+        'user_id',
+        'recipe_id',
     ];
 
-    public function recipe()
+    public function user()
     {
-        return $this->hasMany(Recipe::class);
+        return $this->belongsTo(User::class);
     }
-
 }
