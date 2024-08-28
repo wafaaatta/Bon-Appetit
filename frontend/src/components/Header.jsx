@@ -37,6 +37,11 @@ const Header = () => {
               <NavLink to={""}>Connexion</NavLink>
             </div>
           </div>
+          <div className="flex justify-center items-center bg-second-color rounded text-white w-52 h-9">
+            <NavLink to={"/form-add"}>
+              <h3>Ajouter recette + </h3>
+            </NavLink>
+          </div>
         </div>
       </div>
     </>
