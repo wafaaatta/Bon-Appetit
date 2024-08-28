@@ -44,3 +44,13 @@ p{
 .bloc{
   margin-top: 50px;
 }
+
+.input-text , textarea{
+  width: 100%;
+  height: 40px;
+  border: solid 1px rgba(128, 128, 128, 0.206) ;
+  border-radius: 5px;
+}
+textarea{
+  height: 120px;
+}

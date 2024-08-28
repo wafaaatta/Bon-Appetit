@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import Card from "../components/Card";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 
@@ -17,11 +18,14 @@ const Homepage = () => {
               <Card />
               <Card />
               <Card />
+              <Card />
+              <Card />
             </div>
           </div>
         </div>
       </div>
-      <div className="mb-40"></div>
+      {/* <div className="mb-40"></div> */}
+      <Footer />
     </>
   );
 };
