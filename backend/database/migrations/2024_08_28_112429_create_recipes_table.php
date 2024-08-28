@@ -17,6 +17,10 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('category_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('title');
             $table->foreignId('ingredient_id')
                 ->constrained()
@@ -24,6 +28,10 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->text('content');
             $table->foreignId('picture_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('comment_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
