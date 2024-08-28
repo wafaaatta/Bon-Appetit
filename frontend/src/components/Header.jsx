@@ -12,7 +12,7 @@ const Header = () => {
               alt="image logo Bon Appetit"
             />
           </div>
-          <div className="flex justify-center items-center gap-24 text-first-color">
+          <div className="flex justify-center items-center gap-24 text-black">
             <NavLink
               className={(nav) => (nav.isActive ? "nav-active" : "")}
               to={"/"}
@@ -33,7 +33,7 @@ const Header = () => {
                 Mon Profile
               </NavLink>
             }
-            <div className="btn flex justify-center items-center rounded text-white bg-first-color">
+            <div className="btn flex justify-center items-center rounded text-white bg-first-color font-bold">
               <NavLink to={""}>Connexion</NavLink>
             </div>
           </div>
