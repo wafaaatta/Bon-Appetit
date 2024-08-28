@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorie_recipe', function (Blueprint $table) {
+        Schema::create('category_recipe', function (Blueprint $table) {
             $table->foreignId('categorie_id')
                 ->constrained()
                 ->onUpdate('cascade')
