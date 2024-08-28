@@ -20,6 +20,7 @@ const Banner = () => {
             offre une collection variée de recettes faciles à suivre, adaptées à
             tous les goûts et occasions.
           </div>
+          <SearchBar />
         </div>
       </div>
     </>
