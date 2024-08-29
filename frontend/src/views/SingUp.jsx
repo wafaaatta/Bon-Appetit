@@ -22,10 +22,6 @@ const SignUp = () => {
             <label htmlFor="">Mot de passe</label>
             <input className="border rounded h-11 w-3/4" type="password" />
           </div>
-          <div className="flex flex-col justify-center w-full">
-            <label htmlFor="">Confirmation mot de passe</label>
-            <input className="border rounded h-11 w-3/4" type="password" />
-          </div>
         </div>
         <div className="bloc flex justify-center bg-second-color w-40 h-10 rounded text-white">
           <button className=""> S'Enregistrer</button>

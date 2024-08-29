@@ -1,5 +1,7 @@
 import Banner from "../components/Banner";
+import BannerBottom from "../components/BannerBottom";
 import Card from "../components/Card";
+import Categories from "../components/Categories";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
@@ -22,9 +24,17 @@ const Homepage = () => {
               <Card />
             </div>
           </div>
-          <div></div>
+          <div className="bloc flex flex-col items-center">
+            <h2>Categories</h2>
+            <div className="flex gap-5">
+              <Categories />
+              <Categories />
+              <Categories />
+            </div>
+          </div>
         </div>
       </div>
+      <BannerBottom />
       {/* <div className="mb-40"></div> */}
       <Footer />
     </>

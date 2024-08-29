@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [isLogged, setIsLogged] = useState(true);
   return (
     <>
       <div className="bg-third-color flex justify-center items-center gap-32">
@@ -37,11 +39,13 @@ const Header = () => {
               <NavLink to={"/sign-in"}>Connexion</NavLink>
             </div>
           </div>
-          <div className="flex justify-center items-center bg-second-color rounded text-white w-52 h-9">
-            <NavLink to={"/form-add"}>
-              <h3>Ajouter recette + </h3>
-            </NavLink>
-          </div>
+          {isLogged && (
+            <div className="flex justify-center items-center bg-second-color rounded text-white w-52 h-9">
+              <NavLink to={"/form-add"}>
+                <h3>Ajouter recette + </h3>
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
     </>
