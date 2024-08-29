@@ -11,6 +11,7 @@ class Comment extends Model
 
     public $fillable = [
         'user_id',
+        'recipe_id',
         'content',
     ];
 
