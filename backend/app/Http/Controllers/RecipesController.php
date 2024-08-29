@@ -61,9 +61,21 @@ class RecipesController extends Controller
 
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
         }
-
         $recipe->save();
 
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
+    }
+
+    public function attachIngredient(Request $request, $id)
+    {
+        $recipe = Recipe::find($id);
+
+        if (!$recipe) {
+            return response()->json(['message' => 'Séance non trouvée'], 404);
+        }
+
+        $recipe->ingredient()->attach($request->ingredient_id);
+
+        return response()->json(['message' => 'Recette ajouté avec succès']);
     }
 }
