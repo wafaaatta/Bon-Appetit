@@ -12,6 +12,7 @@ class Recipe extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'category_id',
         'ingredient_id',
         'content',
         'picture_id',
@@ -25,11 +26,6 @@ class Recipe extends Model
     public function ingredient()
     {
         return $this->belongsToMany(Ingredient::class, "ingredient_recipe");
-    }
-
-    public function picture()
-    {
-        return $this->hasOne(Picture::class);
     }
 
     public function category()
