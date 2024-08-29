@@ -6,6 +6,7 @@ use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class RecipesController extends Controller
 {
     public function getRecipes() {
@@ -52,6 +53,7 @@ class RecipesController extends Controller
 
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
         }
+
         $recipe->save();
 
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);

@@ -14,6 +14,7 @@ class Recipe extends Model
         'title',
         'content',
         'picture',
+
     ];
 
     public function user()
