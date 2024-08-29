@@ -22,6 +22,7 @@ const Homepage = () => {
               <Card />
             </div>
           </div>
+          <div></div>
         </div>
       </div>
       {/* <div className="mb-40"></div> */}

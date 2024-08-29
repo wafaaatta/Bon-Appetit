@@ -34,7 +34,7 @@ const Header = () => {
               </NavLink>
             }
             <div className="btn flex justify-center items-center rounded text-white bg-first-color font-bold">
-              <NavLink to={""}>Connexion</NavLink>
+              <NavLink to={"/sign-in"}>Connexion</NavLink>
             </div>
           </div>
           <div className="flex justify-center items-center bg-second-color rounded text-white w-52 h-9">
