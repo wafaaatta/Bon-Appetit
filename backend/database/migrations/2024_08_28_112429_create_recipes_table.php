@@ -13,28 +13,24 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->string('picture');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('category_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->string('title');
-            $table->foreignId('ingredient_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->text('content');
-            $table->foreignId('picture_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('comment_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            
+   
+            // $table->foreignId('category_id')
+            //     ->constrained()
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade');
+
+            // $table->foreignId('comment_id')
+            //     ->constrained()
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade');
             $table->timestamps();
         });
     }

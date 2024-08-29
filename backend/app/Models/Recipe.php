@@ -12,9 +12,9 @@ class Recipe extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'ingredient_id',
         'content',
-        'picture_id',
+        'picture',
+
     ];
 
     public function user()
@@ -27,18 +27,18 @@ class Recipe extends Model
         return $this->belongsToMany(Ingredient::class, "ingredient_recipe");
     }
 
-    public function picture()
-    {
-        return $this->hasOne(Picture::class);
-    }
+    // public function picture()
+    // {
+    //     return $this->hasOne(Picture::class);
+    // }
 
-    public function category()
-    {
-        return $this->hasOne(Category::class);
-    }
+    // public function category()
+    // {
+    //     return $this->hasOne(Category::class);
+    // }
 
-    public function comment()
-    {
-        return $this->hasMany(Comment::class);
-    }
+    // public function comment()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 }
