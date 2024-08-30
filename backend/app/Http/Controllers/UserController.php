@@ -47,4 +47,34 @@ class UserController extends Controller
         return response()->json(['status' => 200, 'content' => 'Utilisateur modifier avec succées']);
     }
 
+//     public function login(Request $request) {
+
+//         $validator = Validator::make($request->all(), [
+//             'email' => 'required|string|email',
+//             'password' => 'required|string',
+//         ]);
+
+
+//         if ($validator->fails()) {
+//             throw ValidationException::withMessages($validator->errors()->toArray());
+//         }
+
+//         if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+//             throw ValidationException::withMessages(['message' => 'Les informations d\'identification fournies sont incorrectes']);
+//         }
+
+//         if(auth('sanctum')->check()){
+//             auth()->user()->tokens()->delete();
+//          }
+
+//         $user = Auth::user();
+
+//          $token = Auth::user()
+//                   ->createToken('app_token',['*'])
+//                   ->plainTextToken;
+
+//         return response()->json(['user' => $user, 'token' => $token]);
+
+// }
+
 }
