@@ -14,7 +14,7 @@ class RecipesController extends Controller
         return $recipes;
     }
     public function getRecipe($id) {
-        $recipe = Recipe::find($id);
+        $recipe = Recipe::with('ingredient')->find($id);
 
         return $recipe;
     }
@@ -25,7 +25,7 @@ class RecipesController extends Controller
         $recipe->ingredient()->detach();
         $recipe->delete();
 
-        return response()->json(['status' => 200, 'content' => 'Recette supprimée avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette supprimée avec succès']);
     }
 
     public function postRecipe(Request $request) {
@@ -40,13 +40,14 @@ class RecipesController extends Controller
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succès']);
     }
 
     public function editRecipe($id, Request $request) {
         $recipe = Recipe::find($id);
         $recipe->title = $request->title;
         $recipe->content = $request->content;
+        $recipe->category_id = $request->category_id;
         if ($request->hasFile('picture')) {
             if ($recipe->picture) {
                 Storage::disk('public')->delete($recipe->picture);
@@ -56,7 +57,7 @@ class RecipesController extends Controller
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette modifiée avec succès']);
     }
 
     public function attachIngredient(Request $request, $id)
