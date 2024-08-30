@@ -17,6 +17,7 @@ class RecipeSeeder extends Seeder
         Recipe::factory()->create([
             'user_id' => 1,
             'title' => 'Test Recipe',
+            'status' => 'pending',
             'category_id' => 1,
             'content' => 'This is a test recipe.',
             'picture' => 'url image',

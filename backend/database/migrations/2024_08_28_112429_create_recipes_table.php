@@ -22,6 +22,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('title');
+            $table->string('status');
             $table->text('content');
             $table->text('picture');
             $table->timestamps();
