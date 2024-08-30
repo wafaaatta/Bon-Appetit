@@ -28,7 +28,6 @@ const FormAdd = () => {
     if (picture) {
       recipe.append("picture", picture);
     }
-    console.log(picture);
 
     const headers = {
       "Content-Type": "multipart/form-data",
@@ -39,7 +38,6 @@ const FormAdd = () => {
         headers,
       })
       .then((response) => {
-        console.log(response);
         const recipe_id = response.data.recipe_id;
         setRecipeId(recipe_id);
       });
@@ -65,7 +63,6 @@ const FormAdd = () => {
       axios
         .get("http://127.0.0.1:8000/api/recipes/" + recipe_id)
         .then((response) => {
-          console.log(response);
           setIngredients(response.data.ingredient);
         });
     };
