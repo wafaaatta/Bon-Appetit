@@ -6,7 +6,6 @@ use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class RecipesController extends Controller
 {
     public function getRecipes()

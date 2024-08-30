@@ -15,7 +15,7 @@ class Category extends Model
 
     public function recettes()
     {
-        return $this->hasMany(Recette::class, 'id_category');
+        return $this->hasMany(Recette::class, 'category_id');
     }
 
 }
