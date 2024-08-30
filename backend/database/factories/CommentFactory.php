@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recipe>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class RecipeFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,11 +18,8 @@ class RecipeFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'title' => $this->faker->sentence,
-            'status' => 'published',
-            'category_id' => 1,
             'content' => $this->faker->paragraph,
-            'picture' => $this->faker->imageUrl(),
+            'recipe_id' => 1,
         ];
     }
 }

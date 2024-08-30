@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -21,7 +22,12 @@ Route::get('/recipes/{id}', [RecipesController::class, 'getRecipe']);
 Route::post('/recipes', [RecipesController::class, 'postRecipe']);
 Route::put('/recipes/{id}', [RecipesController::class, 'editRecipe']);
 Route::delete('/recipes/{id}', [RecipesController::class, 'deleteRecipe']);
+
+Route::get('recipes/{recipeId}/comments', [CommentsController::class, 'getComments']);
+Route::post('recipes/{recipeId}/comments', [CommentsController::class, 'postComment']);
+Route::delete('comments/{id}', [CommentsController::class, 'deleteComment']);
 Route::post('/attachIngredient/{id}', [RecipesController::class, 'attachIngredient']);
+Route::post('/recipes/categories', [RecipesController::class, 'getRecipesCategory']);
 
 Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
 Route::get('/ingredients/{id}', [IngredientController::class, 'getIngredient']);
