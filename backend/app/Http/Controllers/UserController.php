@@ -38,7 +38,9 @@ class UserController extends Controller
         $user->role = 'user';
         $user->save();
 
-        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouter avec succées']);
+        $userId = $user->id;
+
+        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouter avec succées', 'user_id' => $userId]);
     }
 
     public function editUser($id, Request $request)

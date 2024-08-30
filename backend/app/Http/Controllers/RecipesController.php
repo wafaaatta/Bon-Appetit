@@ -11,13 +11,13 @@ class RecipesController extends Controller
 {
     public function getRecipes()
     {
-        $recipes = Recipe::with('ingredient')->get();
+        $recipes = Recipe::with(['category', 'ingredient'])->get();
 
         return $recipes;
     }
     public function getRecipe($id)
     {
-        $recipe = Recipe::find($id);
+        $recipe = Recipe::with(['category', 'ingredient'])->get();($id);
 
         return $recipe;
     }
@@ -38,6 +38,7 @@ class RecipesController extends Controller
         $recipe->title = $request->title;
         $recipe->content = $request->content;
         $recipe->user_id = $request->user_id;
+        $recipe->category_id = 1;
         if ($request->hasFile('picture')) {
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
         }
@@ -66,16 +67,12 @@ class RecipesController extends Controller
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
     }
 
-    public function attachIngredient(Request $request, $id)
+    public function getRecipesCategory()
     {
-        $recipe = Recipe::find($id);
+        $recipes = Recipe::with(['category', 'ingredient'])
+        ->where('category_id', 2)
+        ->get();
 
-        if (!$recipe) {
-            return response()->json(['message' => 'Séance non trouvée'], 404);
-        }
-
-        $recipe->ingredient()->attach($request->ingredient_id);
-
-        return response()->json(['message' => 'Recette ajouté avec succès']);
+        return $recipes;
     }
 }

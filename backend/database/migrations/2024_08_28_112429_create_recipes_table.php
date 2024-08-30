@@ -22,10 +22,10 @@ return new class extends Migration
                 ->onDelete('cascade');
 
 
-            // $table->foreignId('category_id')
-            //     ->constrained()
-            //     ->onUpdate('cascade')
-            //     ->onDelete('cascade');
+            $table->foreignId('category_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             // $table->foreignId('comment_id')
             //     ->constrained()

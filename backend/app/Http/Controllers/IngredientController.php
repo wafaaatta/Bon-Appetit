@@ -58,7 +58,6 @@ class IngredientController extends Controller
         $Ingredient->title = $request->title;
         $Ingredient->content = $request->content;
         $Ingredient->save();
-
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
     }
 }
