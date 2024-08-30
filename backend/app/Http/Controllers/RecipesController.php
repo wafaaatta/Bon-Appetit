@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipesController extends Controller
 {
-    public function getRecipes() {
+    public function getRecipes()
+    {
         $recipes = Recipe::with('ingredient')->get();
 
         return $recipes;
@@ -42,7 +43,10 @@ class RecipesController extends Controller
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées']);
+        $lastRecipe = Recipe::orderBy('id', 'desc')->first();
+        $recipe_id = $lastRecipe->id;
+
+        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées', "recipe_id" => $recipe_id]);
     }
 
     public function editRecipe($id, Request $request)
@@ -61,18 +65,5 @@ class RecipesController extends Controller
         $recipe->save();
 
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
-    }
-
-    public function attachIngredient(Request $request, $id)
-    {
-        $recipe = Recipe::find($id);
-
-        if (!$recipe) {
-            return response()->json(['message' => 'Séance non trouvée'], 404);
-        }
-
-        $recipe->ingredient()->attach($request->ingredient_id);
-
-        return response()->json(['message' => 'Recette ajouté avec succès']);
     }
 }
