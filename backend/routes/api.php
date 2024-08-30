@@ -24,3 +24,11 @@ Route::delete('/recipes/{id}', [RecipesController::class, 'deleteRecipe']);
 Route::get('recipes/{recipeId}/comments', [CommentsController::class, 'getComments']);
 Route::post('recipes/{recipeId}/comments', [CommentsController::class, 'postComment']);
 Route::delete('comments/{id}', [CommentsController::class, 'deleteComment']);
+
+Route::post('/attachIngredient/{id}', [RecipesController::class, 'attachIngredient']);
+
+Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
+Route::get('/ingredients/{id}', [IngredientController::class, 'getIngredient']);
+Route::post('/ingredients', [IngredientController::class, 'postIngredient']);
+Route::put('/ingredients/{id}', [IngredientController::class, 'editIngredient']);
+Route::delete('/ingredients/{id}', [IngredientController::class, 'deleteIngredient']);
