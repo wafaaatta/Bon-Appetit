@@ -37,6 +37,13 @@ const Homepage = () => {
       <BannerBottom />
       {/* <div className="mb-40"></div> */}
       <Footer />
+      <div className="block-principal">
+        <div>
+          <div></div>
+          <div></div>
+          <div>Barre de recherche</div>
+        </div>
+      </div>
     </>
   );
 };
