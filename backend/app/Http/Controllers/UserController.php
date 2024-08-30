@@ -23,7 +23,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return response()->json(['status' => 200, 'content' => 'Utilisateur supprimé avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Utilisateur supprimé avec succès']);
     }
 
     public function postUser(Request $request) {
@@ -34,17 +34,17 @@ class UserController extends Controller
         $user->role = 'user';
         $user->save();
 
-        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouter avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouté avec succès']);
     }
 
     public function editUser($id, Request $request) {
         $user = User::find($id);
-        $user->name = $request->name;
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->password = $request->password;
         $user->save();
 
-        return response()->json(['status' => 200, 'content' => 'Utilisateur modifier avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Utilisateur modifié avec succès']);
     }
 
 //     public function login(Request $request) {

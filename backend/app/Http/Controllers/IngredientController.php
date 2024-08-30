@@ -23,7 +23,7 @@ class IngredientController extends Controller
         $Ingredient = Ingredient::find($id);
         $Ingredient->delete();
 
-        return response()->json(['status' => 200, 'content' => 'Recette supprimé avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Ingrédient supprimé avec succès']);
     }
 
     public function postIngredient(Request $request) {
@@ -31,16 +31,15 @@ class IngredientController extends Controller
         $Ingredient->name = $request->name;
         $Ingredient->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Ingrédient ajouté avec succès']);
     }
 
     public function editIngredient($id, Request $request) {
         $Ingredient = Ingredient::find($id);
-        $Ingredient->title = $request->title;
-        $Ingredient->content = $request->content;
+        $Ingredient->name = $request->name;
         $Ingredient->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Ingrédient modifié avec succès']);
     }
 
 }
