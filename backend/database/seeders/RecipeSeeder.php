@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,13 +17,14 @@ class RecipeSeeder extends Seeder
         Recipe::factory()->create([
             'user_id' => 1,
             'title' => 'Test Recipe',
+            'status' => 'pending',
             'category_id' => 1,
-            'ingredient_id' => 1,
             'content' => 'This is a test recipe.',
-            'picture_id' => 1,
-            'comment_id' => 1,
+            'picture' => 'url image',
         ]);
-
-        Recipe::factory(10)->create();
+        $ingredient = Ingredient::factory(6)->create();
+        $recipe = Recipe::factory(10)->create()->each(function ($recipe) {
+            $recipe->ingredient()->attach(rand(1, 6));
+        });
     }
 }

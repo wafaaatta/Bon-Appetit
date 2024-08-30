@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            CategorySeeder::class,
             RecipeSeeder::class,
+            CommentSeeder::class,
+            FavoriteSeeder::class,
+            IngredientSeeder::class,
         ]);
 
         User::factory()->create([

@@ -36,6 +36,7 @@ class Recipe extends Model
     //     return $this->hasOne(Category::class);
     // }
 
+
     // public function comment()
     // {
     //     return $this->hasMany(Comment::class);

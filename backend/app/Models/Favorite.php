@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Picture extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'path',
+    public $fillable = [
+        'user_id',
+        'recipe_id',
     ];
 
-    public function recipe()
+    public function user()
     {
-        return $this->hasOne(Recipe::class);
+        return $this->belongsTo(User::class);
     }
 }
