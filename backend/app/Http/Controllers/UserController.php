@@ -7,26 +7,30 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function getUsers() {
+    public function getUsers()
+    {
         $users = User::all();
 
         return $users;
     }
-    public function getOneUser($id) {
+    public function getOneUser($id)
+    {
         $user = User::find($id);
 
         return $user;
     }
 
 
-    public function deleteUser($id) {
+    public function deleteUser($id)
+    {
         $user = User::find($id);
         $user->delete();
 
         return response()->json(['status' => 200, 'content' => 'Utilisateur supprimé avec succès']);
     }
 
-    public function postUser(Request $request) {
+    public function postUser(Request $request)
+    {
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
@@ -34,10 +38,14 @@ class UserController extends Controller
         $user->role = 'user';
         $user->save();
 
-        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouté avec succès']);
+        $userId = $user->id;
+
+        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouté avec succès', 'user_id' => $userId]);
+
     }
 
-    public function editUser($id, Request $request) {
+    public function editUser($id, Request $request)
+    {
         $user = User::find($id);
         $user->username = $request->username;
         $user->email = $request->email;
