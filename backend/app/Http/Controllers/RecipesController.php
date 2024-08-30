@@ -28,7 +28,7 @@ class RecipesController extends Controller
         $recipe->ingredient()->detach();
         $recipe->delete();
 
-        return response()->json(['status' => 200, 'content' => 'Recette supprimé avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette supprimée avec succès']);
     }
 
     public function postRecipe(Request $request)
@@ -36,6 +36,8 @@ class RecipesController extends Controller
         $recipe = new Recipe;
         $recipe->title = $request->title;
         $recipe->content = $request->content;
+        $recipe->category_id = $request->category_id;
+        $recipe->status = $request->status;
         $recipe->user_id = $request->user_id;
         $recipe->category_id = 1;
         if ($request->hasFile('picture')) {
@@ -46,7 +48,8 @@ class RecipesController extends Controller
         $lastRecipe = Recipe::orderBy('id', 'desc')->first();
         $recipe_id = $lastRecipe->id;
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées', "recipe_id" => $recipe_id]);
+        return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succès', "recipe_id" => $recipe_id]);
+
     }
 
     public function editRecipe($id, Request $request)
@@ -54,6 +57,7 @@ class RecipesController extends Controller
         $recipe = Recipe::find($id);
         $recipe->title = $request->title;
         $recipe->content = $request->content;
+        $recipe->category_id = $request->category_id;
         if ($request->hasFile('picture')) {
             if ($recipe->picture) {
                 Storage::disk('public')->delete($recipe->picture);
@@ -63,7 +67,7 @@ class RecipesController extends Controller
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette modifiée avec succès']);
     }
 
     public function getRecipesCategory()
