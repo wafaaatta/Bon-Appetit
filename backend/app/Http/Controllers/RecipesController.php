@@ -25,20 +25,22 @@ class RecipesController extends Controller
         $recipe->ingredient()->detach();
         $recipe->delete();
 
-        return response()->json(['status' => 200, 'content' => 'Recette supprimé avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette supprimée avec succées']);
     }
 
     public function postRecipe(Request $request) {
         $recipe = new Recipe;
         $recipe->title = $request->title;
         $recipe->content = $request->content;
+        $recipe->category_id = $request->category_id;
+        $recipe->status = $request->status;
         $recipe->user_id = $request->user_id;
         if ($request->hasFile('picture')) {
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées']);
+        return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succées']);
     }
 
     public function editRecipe($id, Request $request) {
@@ -62,11 +64,11 @@ class RecipesController extends Controller
         $recipe = Recipe::find($id);
 
         if (!$recipe) {
-            return response()->json(['message' => 'Séance non trouvée'], 404);
+            return response()->json(['message' => 'Recette non trouvée'], 404);
         }
 
         $recipe->ingredient()->attach($request->ingredient_id);
 
-        return response()->json(['message' => 'Recette ajouté avec succès']);
+        return response()->json(['message' => 'Recette ajoutée avec succès']);
     }
 }
