@@ -32,14 +32,6 @@ const FormAdd = () => {
             </div>
             <div className="flex flex-col  w-2/5 gap-3">
               <div>
-                Area: <br />
-                <input
-                  className="input-text"
-                  type="text"
-                  placeholder="Inserez le lieu"
-                />
-              </div>
-              <div>
                 Preparations: <br />
                 <textarea
                   placeholder="Inserez la preparation"
