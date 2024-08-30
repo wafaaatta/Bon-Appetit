@@ -9,19 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipesController extends Controller
 {
-    public function getRecipes() {
+    public function getRecipes()
+    {
         $recipes = Recipe::with('ingredient')->get();
 
         return $recipes;
     }
-    public function getRecipe($id) {
+    public function getRecipe($id)
+    {
         $recipe = Recipe::find($id);
 
         return $recipe;
     }
 
 
-    public function deleteRecipe($id) {
+    public function deleteRecipe($id)
+    {
         $recipe = Recipe::find($id);
         $recipe->ingredient()->detach();
         $recipe->delete();
@@ -29,7 +32,8 @@ class RecipesController extends Controller
         return response()->json(['status' => 200, 'content' => 'Recette supprimé avec succées']);
     }
 
-    public function postRecipe(Request $request) {
+    public function postRecipe(Request $request)
+    {
         $recipe = new Recipe;
         $recipe->title = $request->title;
         $recipe->content = $request->content;
@@ -39,10 +43,14 @@ class RecipesController extends Controller
         }
         $recipe->save();
 
-        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées']);
+        $lastRecipe = Recipe::orderBy('id', 'desc')->first();
+        $recipe_id = $lastRecipe->id;
+
+        return response()->json(['status' => 200, 'content' => 'Recette ajouter avec succées', "recipe_id" => $recipe_id]);
     }
 
-    public function editRecipe($id, Request $request) {
+    public function editRecipe($id, Request $request)
+    {
         $recipe = Recipe::find($id);
         $recipe->title = $request->title;
         $recipe->content = $request->content;
@@ -57,18 +65,5 @@ class RecipesController extends Controller
         $recipe->save();
 
         return response()->json(['status' => 200, 'content' => 'Recette modifier avec succées']);
-    }
-
-    public function attachIngredient(Request $request, $id)
-    {
-        $recipe = Recipe::find($id);
-
-        if (!$recipe) {
-            return response()->json(['message' => 'Séance non trouvée'], 404);
-        }
-
-        $recipe->ingredient()->attach($request->ingredient_id);
-
-        return response()->json(['message' => 'Recette ajouté avec succès']);
     }
 }
