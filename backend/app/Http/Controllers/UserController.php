@@ -44,7 +44,10 @@ class UserController extends Controller
 
         $user = User::create($request->all());
         $token = $user->createToken('authToken', ['*']);
-            return response()->json(['token' => $token->plainTextToken]);
+        return response()->json([
+            'token' => $token->plainTextToken,
+            'message' => 'Vous vous êtes bien enregistré .'
+        ]);
     }
 
     public function editUser($id, Request $request)
@@ -73,7 +76,8 @@ class UserController extends Controller
             $user = User::where('email', $credentials['email'])->first();
             $token = $user->createToken('authToken', ['*'])
                 ->plainTextToken;
-            return response()->json(['message' => 'Log successfully',
+            return response()->json([
+                'message' => 'Log successfully',
                 'token' => $token,
                 'user' => $user
             ]);

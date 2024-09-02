@@ -14,6 +14,7 @@ class RecipesController extends Controller
 
         return $recipes;
     }
+
     public function getRecipe($id)
     {
         $recipe = Recipe::with(['category', 'ingredient'])->find($id);
@@ -27,9 +28,9 @@ class RecipesController extends Controller
                         ->where('title', 'like', '%' . $title . '%')
                         ->get();
 
+
         return $recipe;
     }
-
 
     public function deleteRecipe($id)
     {

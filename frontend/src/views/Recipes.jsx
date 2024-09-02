@@ -46,7 +46,7 @@ const Recipes = () => {
   }
 
   useEffect(() => {
-    if(searchValue === ""){
+    if (searchValue === "") {
       getRecipes();
     } else {
       getRecipeByName();
