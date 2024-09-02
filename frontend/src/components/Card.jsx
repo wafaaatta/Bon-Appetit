@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Card = ({ recipe }) => {
   const getImageUrl = (image) => {
     if (image) {
-      return "http://127.0.0.1:8000/" + image;
+      return "http://127.0.0.1:8000/storage/" + image;
     }
   };
   return (
