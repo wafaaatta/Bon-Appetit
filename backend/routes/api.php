@@ -17,6 +17,8 @@ Route::get('/user/{id}', [UserController::class, 'getOneUser']);
 Route::post('/user', [UserController::class, 'postUser']);
 Route::put('/user/{id}', [UserController::class, 'editUser']);
 Route::delete('/user/{id}', [UserController::class, 'deleteUser']);
+Route::post('/user/login', [UserController::class, 'login']);
+Route::post('/user/register', [UserController::class, 'postUser']);
 
 Route::get('/recipes', [RecipesController::class, 'getRecipes']);
 Route::get('/recipes/{id}', [RecipesController::class, 'getRecipe']);
