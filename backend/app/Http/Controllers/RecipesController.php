@@ -77,10 +77,10 @@ class RecipesController extends Controller
         return response()->json(['status' => 200, 'content' => 'Recette modifiée avec succès']);
     }
 
-    public function getRecipesCategory()
+    public function getRecipesCategory($id)
     {
         $recipes = Recipe::with(['category', 'ingredient'])
-            ->where('category_id', 2)
+            ->where('category_id', $id)
             ->get();
 
         return $recipes;
