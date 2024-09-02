@@ -37,7 +37,7 @@ class RecipesController extends Controller
         $recipe->title = $request->title;
         $recipe->content = $request->content;
         $recipe->category_id = $request->category_id;
-        // $recipe->status = $request->status;
+        $recipe->status = "on";
         $recipe->user_id = $request->user_id;
         if ($request->hasFile('picture')) {
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
