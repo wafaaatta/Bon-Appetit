@@ -18,4 +18,9 @@ class Favorite extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class);
+    }
 }

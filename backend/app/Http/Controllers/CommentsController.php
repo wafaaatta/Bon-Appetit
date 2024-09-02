@@ -17,6 +17,7 @@ class CommentsController extends Controller
         $comment = new Comment;
         $comment->recipe_id = $recipeId;
         $comment->content = $request->content;
+        $comment->user_id = $request->userId;
         $comment->save();
 
         return response()->json(['status' => 200, 'content' => 'Commentaire ajouté avec succès']);

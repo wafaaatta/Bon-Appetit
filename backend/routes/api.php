@@ -41,4 +41,4 @@ Route::delete('/ingredients/{id}', [IngredientController::class, 'deleteIngredie
 Route::get('/user/{userId}/favorites', [FavoriteController::class, 'getFavorites']);
 Route::post('/user/{userId}/favorites/{recipeId}', [FavoriteController::class, 'postFavorite']);
 Route::delete('/favorites/{id}', [FavoriteController::class, 'deleteFavorite']);
-
+Route::get('/favorites/check/{userId}/{recipeId}', [FavoriteController::class, 'isFavorite']);

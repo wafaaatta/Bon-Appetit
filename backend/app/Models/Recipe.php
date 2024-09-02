@@ -12,7 +12,7 @@ class Recipe extends Model
     protected $fillable = [
         'user_id',
         'category_id',
-        // 'status',
+        'status',
         'title',
         'content',
         'picture',
@@ -40,5 +40,10 @@ class Recipe extends Model
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }
