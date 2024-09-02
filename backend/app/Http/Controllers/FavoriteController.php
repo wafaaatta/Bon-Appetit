@@ -25,9 +25,9 @@ class FavoriteController extends Controller
     public function deleteFavorite(Request $request, $id) {
         $favorite = Favorite::find($id);
 
-//        if ($favorite->user_id !== $request->user()->id) {
-//            return response()->json(['status' => 403, 'content' => 'Vous n\'êtes pas autorisé à supprimer cette recette de vos favoris']);
-//        }
+        if ($favorite->user_id !== $request->user()->id) {
+            return response()->json(['status' => 403, 'content' => 'Vous n\'êtes pas autorisé à supprimer cette recette de vos favoris']);
+        }
 
         $favorite->delete();
 
