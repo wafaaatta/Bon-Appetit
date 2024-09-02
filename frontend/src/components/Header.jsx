@@ -30,7 +30,7 @@ const Header = () => {
             {
               <NavLink
                 className={(nav) => (nav.isActive ? "nav-active" : "")}
-                to={"/profile"}
+                to={"/my-profile"}
               >
                 Mon Profile
               </NavLink>
