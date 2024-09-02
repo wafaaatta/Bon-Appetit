@@ -22,6 +22,16 @@ class RecipesController extends Controller
         return $recipe;
     }
 
+    public function getRecipeByName($title)
+    {
+        $recipe = Recipe::with(['category', 'ingredient'])
+                        ->where('title', 'like', '%' . $title . '%')
+                        ->get();
+
+
+        return $recipe;
+    }
+
     public function deleteRecipe($id)
     {
         $recipe = Recipe::find($id);
@@ -37,9 +47,8 @@ class RecipesController extends Controller
         $recipe->title = $request->title;
         $recipe->content = $request->content;
         $recipe->category_id = $request->category_id;
-        $recipe->status = $request->status;
+        $recipe->status = "on";
         $recipe->user_id = $request->user_id;
-        $recipe->category_id = 1;
         if ($request->hasFile('picture')) {
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
         }
@@ -49,7 +58,6 @@ class RecipesController extends Controller
         $recipe_id = $lastRecipe->id;
 
         return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succès', "recipe_id" => $recipe_id]);
-
     }
 
     public function editRecipe($id, Request $request)
