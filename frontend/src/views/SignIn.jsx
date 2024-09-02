@@ -27,8 +27,7 @@ const SignIn = () => {
     axios
       .post("http://127.0.0.1:8000/api/user/login/", user, { headers })
       .then((response) => {
-        console.log(response);
-        const token_login = localStorage.setItem(response.data.token);
+        console.log(response.data);
         navigate("/my-profile");
       });
   };

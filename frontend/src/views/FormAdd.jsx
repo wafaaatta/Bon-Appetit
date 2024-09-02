@@ -8,7 +8,9 @@ const FormAdd = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [picture, setPicture] = useState(null);
+
   const [category_id, setCategoryId] = useState("");
+  const [status, setStatus] = useState("on");
 
   const [user_id, setUserId] = useState("1");
 
@@ -25,6 +27,7 @@ const FormAdd = () => {
     recipe.append("title", title);
     recipe.append("content", content);
     recipe.append("category_id", category_id);
+    recipe.append("status", status);
     recipe.append("user_id", user_id);
 
     if (picture) {
