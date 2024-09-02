@@ -1,6 +1,18 @@
+import axios from "axios";
 import Header from "../components/Header";
+import { useEffect } from "react";
 
 const Profile = () => {
+  const getUsers = () => {
+    axios.get("http://127.0.0.1:8000/api/user").then((response) => {
+      console.log(response);
+    });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <>
       <Header />
