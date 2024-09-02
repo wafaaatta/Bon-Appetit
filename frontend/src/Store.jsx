@@ -1,10 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searchReducer from './slice/SearchSlice';
+
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import rootReducer from './root_reducer';
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  // Add any other configuration options as needed
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 
 const store = configureStore({
-  reducer: {
-    search: searchReducer,
-  },
+  reducer: persistedReducer,
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export {persistor, store}

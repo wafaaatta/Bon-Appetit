@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const FormAdd = () => {
   const [title, setTitle] = useState("");
@@ -18,8 +19,15 @@ const FormAdd = () => {
 
   const [ingredient_name, setIngridientName] = useState("");
 
+  const dispatch = useDispatch()
+  const {loading,error,token} = useSelector(state => state.auth_reducer)
+
   const addRecipeInfos = (e) => {
     e.preventDefault();
+    if(token == null){
+      alert("Login first")
+      return
+    }
 
     const recipe = new FormData();
     recipe.append("title", title);
@@ -48,6 +56,11 @@ const FormAdd = () => {
 
   const addIngredientName = (e) => {
     e.preventDefault();
+    if(token == null){
+      alert("Login first")
+      return
+    }
+
 
     const ingredient_added = {
       name: ingredient_name,

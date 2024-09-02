@@ -7,6 +7,7 @@ import FormAdd from "./views/FormAdd";
 import SingleRecipe from "./views/SingleRecipe";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SingUp";
+import Favorites from "./views/favorites";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" Component={Homepage} />
           <Route path="/recipes" Component={Recipes} />
+          <Route path="/favorites" Component={Favorites} />
           <Route path="/my-profile" Component={Profile} />
           <Route path="/form-add" Component={FormAdd} />
           <Route path="/single-recipe" Component={SingleRecipe} />

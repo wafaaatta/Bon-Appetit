@@ -16,12 +16,7 @@ const Homepage = () => {
         <div className="bloc flex flex-col justify-center items-center">
           <div className="bloc flex flex-col items-center">
             <LastRecipe />
-            <h2>Categories</h2>
-            <div className="flex gap-5">
-              <Categories />
-              <Categories />
-              <Categories />
-            </div>
+            
           </div>
         </div>
       </div>
