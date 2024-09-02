@@ -22,6 +22,7 @@ Route::get('/recipes/{id}', [RecipesController::class, 'getRecipe']);
 Route::post('/recipes', [RecipesController::class, 'postRecipe']);
 Route::put('/recipes/{id}', [RecipesController::class, 'editRecipe']);
 Route::delete('/recipes/{id}', [RecipesController::class, 'deleteRecipe']);
+Route::get('/getRecipeByName/{title}', [RecipesController::class, 'getRecipeByName']);
 
 Route::get('recipes/{recipeId}/comments', [CommentsController::class, 'getComments']);
 Route::post('recipes/{recipeId}/comments', [CommentsController::class, 'postComment']);
