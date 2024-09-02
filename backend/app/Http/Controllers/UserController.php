@@ -44,7 +44,10 @@ class UserController extends Controller
 
         $user = User::create($request->all());
         $token = $user->createToken('authToken', ['*']);
-            return response()->json(['token' => $token->plainTextToken]);
+        return response()->json([
+            'token' => $token->plainTextToken,
+            'message' => 'Vous vous êtes bien enregistré .'
+        ]);
     }
 
     public function editUser($id, Request $request)
@@ -57,35 +60,6 @@ class UserController extends Controller
 
         return response()->json(['status' => 200, 'content' => 'Utilisateur modifié avec succès']);
     }
-
-    public function login(Request $request) {
-
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-
-        if ($validator->fails()) {
-            throw ValidationException::withMessages($validator->errors()->toArray());
-        }
-
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            throw ValidationException::withMessages(['message' => 'Les informations d\'identification fournies sont incorrectes']);
-        }
-
-        if(auth('sanctum')->check()){
-            auth()->user()->tokens()->delete();
-         }
-
-        $user = Auth::user();
-
-         $token = Auth::user()
-                  ->createToken('app_token',['*'])
-                  ->plainTextToken;
-
-        return response()->json(['user' => $user, 'token' => $token]);
-
 
     public function login(Request $request)
     {
@@ -102,7 +76,8 @@ class UserController extends Controller
             $user = User::where('email', $credentials['email'])->first();
             $token = $user->createToken('authToken', ['*'])
                 ->plainTextToken;
-            return response()->json(['message' => 'Log successfully',
+            return response()->json([
+                'message' => 'Log successfully',
                 'token' => $token,
                 'user' => $user
             ]);
