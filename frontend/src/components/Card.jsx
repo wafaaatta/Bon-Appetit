@@ -15,7 +15,7 @@ const Card = () => {
           <h3 className="">Burger</h3>
           <p>Burger description</p>
           <div className="underline text-second-color">
-            <NavLink to={""}>Voir plus de details</NavLink>
+            <NavLink to={"/single-recipe"}>Voir plus de details</NavLink>
           </div>
         </div>
       </div>

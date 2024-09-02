@@ -32,14 +32,6 @@ const FormAdd = () => {
             </div>
             <div className="flex flex-col  w-2/5 gap-3">
               <div>
-                Area: <br />
-                <input
-                  className="input-text"
-                  type="text"
-                  placeholder="Inserez le lieu"
-                />
-              </div>
-              <div>
                 Preparations: <br />
                 <textarea
                   placeholder="Inserez la preparation"
@@ -47,6 +39,17 @@ const FormAdd = () => {
                   id=""
                 ></textarea>
               </div>
+            </div>
+          </div>
+          <div></div>
+          <div>
+            <div className="flex w-2/5 gap-3">
+              <input
+                className="input-text"
+                type="text"
+                placeholder="ingredient"
+              />
+              <button>ajouter ingredient +</button>
             </div>
           </div>
           <div className="flex ml-4 mt-10">

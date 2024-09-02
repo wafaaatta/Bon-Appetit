@@ -16,6 +16,7 @@ class Recipe extends Model
         'title',
         'content',
         'picture',
+        'category_id',
     ];
 
     public function user()
@@ -29,10 +30,11 @@ class Recipe extends Model
     }
 
 
-     public function category()
-     {
-         return $this->hasOne(Category::class);
-     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
 
 
      public function comment()

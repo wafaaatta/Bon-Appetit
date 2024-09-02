@@ -4,6 +4,9 @@ import Homepage from "./views/Homepage";
 import Recipes from "./views/Recipes";
 import Profile from "./views/Profile";
 import FormAdd from "./views/FormAdd";
+import SingleRecipe from "./views/SingleRecipe";
+import SignIn from "./views/SignIn";
+import SignUp from "./views/SingUp";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
           <Route path="/recipes" Component={Recipes} />
           <Route path="/my-profile" Component={Profile} />
           <Route path="/form-add" Component={FormAdd} />
+          <Route path="/single-recipe" Component={SingleRecipe} />
+          <Route path="/sign-in" Component={SignIn} />
+          <Route path="/sign-up" Component={SignUp} />
         </Routes>
       </BrowserRouter>
     </>
