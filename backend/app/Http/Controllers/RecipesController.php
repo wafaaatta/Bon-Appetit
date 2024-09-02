@@ -16,7 +16,7 @@ class RecipesController extends Controller
     }
     public function getRecipe($id)
     {
-        $recipe = Recipe::with(['category', 'ingredient'])->get();($id);
+        $recipe = Recipe::with(['category', 'ingredient'])->find($id);
 
         return $recipe;
     }
