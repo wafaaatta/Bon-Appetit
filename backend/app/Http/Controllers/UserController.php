@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserController extends Controller
 {
@@ -13,13 +17,13 @@ class UserController extends Controller
 
         return $users;
     }
+
     public function getOneUser($id)
     {
         $user = User::find($id);
 
         return $user;
     }
-
 
     public function deleteUser($id)
     {
@@ -31,17 +35,16 @@ class UserController extends Controller
 
     public function postUser(Request $request)
     {
-        $user = new User;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role = 'user';
-        $user->save();
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|unique:users|email',
+            'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', 'confirmed'],
+            'password_confirmation' => 'required|same:password'
+        ]);
 
-        $userId = $user->id;
-
-        return response()->json(['status' => 200, 'content' => 'Utilisateur ajouté avec succès', 'user_id' => $userId]);
-
+        $user = User::create($request->all());
+        $token = $user->createToken('authToken', ['*']);
+            return response()->json(['token' => $token->plainTextToken]);
     }
 
     public function editUser($id, Request $request)
@@ -83,6 +86,28 @@ class UserController extends Controller
 
         return response()->json(['user' => $user, 'token' => $token]);
 
-}
 
+    public function login(Request $request)
+    {
+        Log::info('Request data:', $request->all());
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            if (auth('sanctum')->check()) {
+                auth()->user()->tokens()->delete();
+            }
+            $user = User::where('email', $credentials['email'])->first();
+            $token = $user->createToken('authToken', ['*'])
+                ->plainTextToken;
+            return response()->json(['message' => 'Log successfully',
+                'token' => $token,
+                'user' => $user
+            ]);
+        } else {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    }
 }
