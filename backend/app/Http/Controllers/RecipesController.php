@@ -14,13 +14,13 @@ class RecipesController extends Controller
 
         return $recipes;
     }
+
     public function getRecipe($id)
     {
         $recipe = Recipe::with(['category', 'ingredient'])->find($id);
 
         return $recipe;
     }
-
 
     public function deleteRecipe($id)
     {
@@ -73,8 +73,8 @@ class RecipesController extends Controller
     public function getRecipesCategory()
     {
         $recipes = Recipe::with(['category', 'ingredient'])
-        ->where('category_id', 2)
-        ->get();
+            ->where('category_id', 2)
+            ->get();
 
         return $recipes;
     }
