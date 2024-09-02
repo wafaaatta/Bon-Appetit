@@ -18,7 +18,7 @@ class RecipeFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->name,
             'status' => 'published',
             'category_id' => 1,
             'content' => $this->faker->paragraph,
