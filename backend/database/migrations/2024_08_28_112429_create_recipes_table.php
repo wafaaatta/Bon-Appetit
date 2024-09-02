@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('status');
+            // $table->string('status');
             $table->text('content');
             $table->string('picture');
             $table->foreignId('user_id')
@@ -22,9 +22,9 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('category_id')
-                 ->constrained()
-                 ->onUpdate('cascade')
-                 ->onDelete('cascade');
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
 
             $table->timestamps();

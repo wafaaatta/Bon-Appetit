@@ -16,12 +16,7 @@ const Homepage = () => {
           <h2>Nos Dernières Recettes</h2>
           <div className="flex flex-wrap items-center justify-center">
             <div className="mt-5 flex justify-center flex-wrap w-3/4">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {/* <Card key={recipe.id} recipe={recipe} /> */}
             </div>
           </div>
           <div className="bloc flex flex-col items-center">

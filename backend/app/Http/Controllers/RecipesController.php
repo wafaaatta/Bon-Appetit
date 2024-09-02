@@ -16,7 +16,7 @@ class RecipesController extends Controller
     }
     public function getRecipe($id)
     {
-        $recipe = Recipe::with(['category', 'ingredient'])->get();($id);
+        $recipe = Recipe::with(['category', 'ingredient'])->find($id);
 
         return $recipe;
     }
@@ -37,7 +37,7 @@ class RecipesController extends Controller
         $recipe->title = $request->title;
         $recipe->content = $request->content;
         $recipe->category_id = $request->category_id;
-        $recipe->status = $request->status;
+        // $recipe->status = $request->status;
         $recipe->user_id = $request->user_id;
         if ($request->hasFile('picture')) {
             $recipe->picture = $request->file('picture')->store('images/recipes', 'public');
@@ -48,7 +48,6 @@ class RecipesController extends Controller
         $recipe_id = $lastRecipe->id;
 
         return response()->json(['status' => 200, 'content' => 'Recette ajoutée avec succès', "recipe_id" => $recipe_id]);
-
     }
 
     public function editRecipe($id, Request $request)
@@ -72,8 +71,8 @@ class RecipesController extends Controller
     public function getRecipesCategory()
     {
         $recipes = Recipe::with(['category', 'ingredient'])
-        ->where('category_id', 2)
-        ->get();
+            ->where('category_id', 2)
+            ->get();
 
         return $recipes;
     }
