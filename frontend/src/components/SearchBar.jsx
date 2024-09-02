@@ -1,26 +1,18 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../slice/SearchSlice";
 
 const SearchBar = () => {
-  const [name, setName] = useState("");
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
 
-  const getRecipeByName = (name) => {
-    console.log(name);
-
-    axios
-      .get("http://127.0.0.1:8000/api/getRecipeByName/" + name)
-      .then((response) => {
-        console.log(response);
-        setData(response);
-      });
-  };
+  const getName = (value) =>  {
+    dispatch(setSearchValue(value))
+  }
 
   return (
     <>
       <div className="bg-white rounded flex">
         <input
-          onChange={(e) => getRecipeByName(e.target.value)}
+          onChange={(e) => getName(e.target.value)}
           className="w-96 h-11"
           type="text"
         />
