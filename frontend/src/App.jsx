@@ -20,6 +20,7 @@ function App() {
           <Route path="/single-recipe" Component={SingleRecipe} />
           <Route path="/sign-in" Component={SignIn} />
           <Route path="/sign-up" Component={SignUp} />
+          <Route path="/my-profile" Component={Profile} />
         </Routes>
       </BrowserRouter>
     </>
