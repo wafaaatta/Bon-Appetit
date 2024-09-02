@@ -3,9 +3,19 @@ import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Card from "../components/Card";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
+  const searchValue = useSelector((state) => state.search.searchValue);
+
+  const getRecipeByName = () => {
+    axios
+      .get("http://127.0.0.1:8000/api/getRecipeByName/" + searchValue)
+      .then((response) => {
+        setRecipes(response.data);
+      });
+  };
 
   const getRecipes = () => {
     axios.get("http://127.0.0.1:8000/api/recipes").then((response) => {
@@ -16,8 +26,12 @@ const Recipes = () => {
   };
 
   useEffect(() => {
-    getRecipes();
-  }, []);
+    if(searchValue === ""){
+      getRecipes();
+    } else {
+      getRecipeByName();
+    }
+  }, [searchValue]);
 
   return (
     <>
