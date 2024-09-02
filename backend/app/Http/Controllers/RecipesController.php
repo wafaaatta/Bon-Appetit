@@ -21,6 +21,15 @@ class RecipesController extends Controller
         return $recipe;
     }
 
+    public function getRecipeByName($title)
+    {
+        $recipe = Recipe::with(['category', 'ingredient'])
+                        ->where('title', 'like', '%' . $title . '%')
+                        ->get();
+
+        return $recipe;
+    }
+
 
     public function deleteRecipe($id)
     {
