@@ -2,18 +2,20 @@ import axios from "axios";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormAdd = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [picture, setPicture] = useState(null);
-  const [category, setCategory] = useState("");
+  const [category_id, setCategoryId] = useState("");
 
   const [user_id, setUserId] = useState("1");
 
   const [recipe_id, setRecipeId] = useState("");
 
-  const [ingredients, setIngredients] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+
   const [ingredient_name, setIngridientName] = useState("");
 
   const addRecipeInfos = (e) => {
@@ -22,7 +24,7 @@ const FormAdd = () => {
     const recipe = new FormData();
     recipe.append("title", title);
     recipe.append("content", content);
-    recipe.append("category", category);
+    recipe.append("category_id", category_id);
     recipe.append("user_id", user_id);
 
     if (picture) {
@@ -39,19 +41,23 @@ const FormAdd = () => {
       })
       .then((response) => {
         const recipe_id = response.data.recipe_id;
+        console.log(response);
         setRecipeId(recipe_id);
       });
   };
 
-  const addIngridientName = (e) => {
+  const addIngredientName = (e) => {
     e.preventDefault();
 
-    const ingredient = {
+    const ingredient_added = {
       name: ingredient_name,
     };
 
     axios
-      .post("http://127.0.0.1:8000/api/ingredients/" + recipe_id, ingredient)
+      .post(
+        "http://127.0.0.1:8000/api/ingredients/" + recipe_id,
+        ingredient_added
+      )
       .then((response) => {
         console.log(response);
       })
@@ -63,9 +69,16 @@ const FormAdd = () => {
       axios
         .get("http://127.0.0.1:8000/api/recipes/" + recipe_id)
         .then((response) => {
+          console.log(response.data.ingredient);
           setIngredients(response.data.ingredient);
         });
     };
+  };
+
+  const navigate = useNavigate();
+  const FormVerified = (e) => {
+    alert("Recette ajouté avec succès .");
+    navigate("/recipes");
   };
 
   return (
@@ -121,16 +134,16 @@ const FormAdd = () => {
               </div>
               <div className="flex ml-4 mt-10">
                 <h4>Categories :</h4>
-                <select name="categories" id="">
-                  <option name="category" value="1">
-                    Entrée
+                <select
+                  onChange={(e) => setCategoryId(e.target.value)}
+                  name="category_id"
+                >
+                  <option className="w-20" value="">
+                    Sélectionner
                   </option>
-                  <option name="category" value="2">
-                    Plat
-                  </option>
-                  <option name="category" value="3">
-                    Dessert
-                  </option>
+                  <option value="1">Entrée</option>
+                  <option value="2">Plat</option>
+                  <option value="3">Dessert</option>
                 </select>
               </div>
             </div>
@@ -151,7 +164,7 @@ const FormAdd = () => {
                     </div>
                   ))}
               </div>
-              <form onSubmit={addIngridientName} className="flex w-2/5 gap-3">
+              <form onSubmit={addIngredientName} className="flex w-2/5 gap-3">
                 <input
                   onChange={(e) => setIngridientName(e.target.value)}
                   className="input-text"
@@ -169,7 +182,7 @@ const FormAdd = () => {
             </div>
           )}
           <div className="flex justify-center ml-4 mt-10 mb-10 bg-first-color w-40 h-10 rounded-full text-white">
-            <button>Ajouter Recette</button>
+            <button onClick={(e) => FormVerified(e)}>Ajouter Recette</button>
           </div>
         </div>
       </div>
