@@ -62,8 +62,8 @@ const Header = () => {
             )}
             {isLogged ? (
               <NavLink
-                to="/form-add"
-                className="flex items-center space-x-1 bg-second-color text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-colors"
+                className={(nav) => (nav.isActive ? "nav-active" : "")}
+                to={"/profile"}
               >
                 <PlusCircle size={16} />
                 <span>Ajouter recette</span>

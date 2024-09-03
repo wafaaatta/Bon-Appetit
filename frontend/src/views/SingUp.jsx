@@ -8,6 +8,7 @@ const SignUp = () => {
     username: "",
     email: "",
     password: "",
+    password_confirmation: "",
   });
 
   const handleInput = async (e, type) => {
@@ -39,6 +40,13 @@ const SignUp = () => {
           };
         });
         return;
+      case "password_confirmation":
+        setUser((currentUser) => {
+          return {
+            ...currentUser,
+            password_confirmation: e.target.value,
+          };
+        });
     }
   };
 
@@ -51,11 +59,15 @@ const SignUp = () => {
       username: user.username,
       email: user.email,
       password: user.password,
+      password_confirmation: user.password_confirmation,
     };
     console.log(user);
 
     axios.post("http://127.0.0.1:8000/api/user", userAdded).then((response) => {
-      alert(response.data.content);
+      console.log(response.data.token);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      alert(response.data.message);
       navigate("/sign-in");
     });
   };
@@ -96,6 +108,16 @@ const SignUp = () => {
               onChange={(e) => handleInput(e, "password")}
               value={user.password}
               name="password"
+              className="border rounded h-11 w-3/4"
+              type="password"
+            />
+          </div>
+          <div className="flex flex-col justify-center w-full">
+            <label htmlFor="">Confirmer Mot de passe</label>
+            <input
+              onChange={(e) => handleInput(e, "password_confirmation")}
+              value={user.password_confirmation}
+              name="password_confirmation"
               className="border rounded h-11 w-3/4"
               type="password"
             />
